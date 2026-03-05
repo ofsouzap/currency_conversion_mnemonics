@@ -5,6 +5,10 @@ module Step = struct
 
   (* TODO - load scores from a config file instead of being hard-coded *)
 
+  let to_string = function
+    | Times n -> Printf.sprintf "×%d" n
+    | Divide n -> Printf.sprintf "÷%d" n
+
   let score = function
     | Times 1 -> 0
     | Times 2 -> 2

@@ -1,0 +1,27 @@
+(library
+ (name currency_conversion_mnemonic_app)
+ (modules currency_conversion_mnemonic_app)
+ (libraries currency_conversion_mnemonics lwt quickterface)
+ (preprocess
+  (pps ppx_jane lwt_ppx)))
+
+(executable
+ (public_name currency_conversion_mnemonic)
+ (name currency_conversion_mnemonic_terminal_app)
+ (modes exe)
+ (modules currency_conversion_mnemonic_terminal_app)
+ (libraries currency_conversion_mnemonic_app quickterface.terminal_app))
+
+(executable
+ (name currency_conversion_mnemonic_web_app)
+ (modes js)
+ (modules currency_conversion_mnemonic_web_app)
+ (libraries currency_conversion_mnemonic_app quickterface.web_app))
+
+(install
+ (section share)
+ (files
+  (index.html as "currency_conversion_mnemonic/index.html")
+  (currency_conversion_mnemonic_web_app.bc.js
+   as
+   "currency_conversion_mnemonic/main.js")))
