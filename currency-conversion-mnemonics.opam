@@ -11,6 +11,9 @@ depends: [
   "dune" {>= "3.21"}
   "ocaml"
   "core"
+  "zarith"
+  "ppx_expect"
+  "ppx_inline_test"
   "odoc" {with-doc}
 ]
 build: [

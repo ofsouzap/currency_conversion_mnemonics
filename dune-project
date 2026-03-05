@@ -16,4 +16,4 @@
 (package
  (name currency-conversion-mnemonics)
  (synopsis "Mnemonics for currency conversions")
- (depends ocaml core))
+ (depends ocaml core zarith ppx_expect ppx_inline_test))

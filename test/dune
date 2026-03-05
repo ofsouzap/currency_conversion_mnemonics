@@ -1,3 +1,6 @@
-(test
+(library
  (name test_currency_conversion_mnemonics)
- (libraries currency_conversion_mnemonics))
+ (libraries currency_conversion_mnemonics core)
+ (inline_tests)
+ (preprocess
+  (pps ppx_expect ppx_jane)))
