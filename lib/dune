@@ -1,0 +1,2 @@
+(library
+ (name currency_conversion_mnemonics))

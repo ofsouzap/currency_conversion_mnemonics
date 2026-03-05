@@ -1,0 +1,4 @@
+(executable
+ (public_name currency-conversion-mnemonics)
+ (name main)
+ (libraries currency_conversion_mnemonics))
