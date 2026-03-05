@@ -1,2 +1,6 @@
 (library
- (name currency_conversion_mnemonics))
+ (name currency_conversion_mnemonics)
+ (libraries core zarith)
+ (modules q_with_sexp mnemonic)
+ (preprocess
+  (pps ppx_jane)))
