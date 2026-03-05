@@ -1,7 +1,7 @@
 open! Core
 
 module Step : sig
-  type t = private Times of int | Divide of int [@@deriving sexp]
+  type t [@@deriving sexp]
 
   val to_string : t -> string
   val score : t -> int

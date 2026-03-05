@@ -1,41 +1,51 @@
 open! Core
 
 module Step = struct
-  type t = Times of int | Divide of int [@@deriving sexp]
+  type t =
+    | Identity
+    | Times_two
+    | Times_three
+    | Times_five
+    | Times_ten
+    | Divide_two
+    | Divide_five
+    | Divide_ten
+  [@@deriving sexp, enumerate]
 
   (* TODO - load scores from a config file instead of being hard-coded *)
 
   let to_string = function
-    | Times n -> Printf.sprintf "×%d" n
-    | Divide n -> Printf.sprintf "÷%d" n
+    | Identity -> "×1"
+    | Times_two -> "×2"
+    | Times_three -> "×3"
+    | Times_five -> "×5"
+    | Times_ten -> "×10"
+    | Divide_two -> "÷2"
+    | Divide_five -> "÷5"
+    | Divide_ten -> "÷10"
 
   let score = function
-    | Times 1 -> 0
-    | Times 2 -> 2
-    | Times 10 -> 1
-    | Times _ -> 8
-    | Divide 1 -> 0
-    | Divide 2 -> 4
-    | Divide 10 -> 2
-    | Divide 5 -> 5
-    | Divide _ -> 15
+    | Identity -> 0
+    | Times_two -> 2
+    | Times_three -> 8
+    | Times_five -> 8
+    | Times_ten -> 1
+    | Divide_two -> 4
+    | Divide_five -> 5
+    | Divide_ten -> 2
 
   let apply step rate =
+    let times n = Q.(rate * of_int n) in
+    let divide n = Q.(rate / of_int n) in
     match step with
-    | Times n -> Q.(rate * of_int n)
-    | Divide n -> Q.(rate / of_int n)
-
-  let all =
-    [
-      Times 2;
-      Times 3;
-      Times 5;
-      Times 10;
-      Divide 2;
-      Divide 3;
-      Divide 5;
-      Divide 10;
-    ]
+    | Identity -> rate
+    | Times_two -> times 2
+    | Times_three -> times 3
+    | Times_five -> times 5
+    | Times_ten -> times 10
+    | Divide_two -> divide 2
+    | Divide_five -> divide 5
+    | Divide_ten -> divide 10
 end
 
 (* TODO - consider having lazy expressions for calculated rate and error *)
