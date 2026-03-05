@@ -5,7 +5,7 @@ module Step : sig
 
   val score : t -> int
   val apply : t -> Q.t -> Q.t
-  val all : unit -> t list
+  val all : t list
 end
 
 type t [@@deriving sexp]

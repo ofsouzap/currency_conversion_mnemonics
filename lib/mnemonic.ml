@@ -21,7 +21,7 @@ module Step = struct
     | Times n -> Q.(rate * of_int n)
     | Divide n -> Q.(rate / of_int n)
 
-  let all () =
+  let all =
     [
       Times 2;
       Times 3;

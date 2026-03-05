@@ -30,6 +30,7 @@ module Make (G : Graph) = struct
   module Shortest_paths = struct
     type t = (G.State.t, Path.t) Hashtbl.t
 
+    let to_list = Hashtbl.to_alist
     let get = Hashtbl.find
   end
 

@@ -8,11 +8,7 @@ module type Graph = sig
     include Container.Summable with type t := t
   end
 
-  module State : sig
-    include Hashtbl.Key
-
-    val all : t list
-  end
+  module State : Hashtbl.Key
 
   module Transition : sig
     type t
@@ -30,6 +26,7 @@ module type Shortest_paths = sig
 
   type t
 
+  val to_list : t -> (G.State.t * G.Transition.t list) list
   val get : t -> G.State.t -> G.Transition.t list option
 end
 
